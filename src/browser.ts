@@ -1,5 +1,4 @@
 import { BrowserConnectResult, BrowserLaunchOptions } from "./types";
-import { Launcher, launch } from "chrome-launcher/dist/chrome-launcher";
 import puppeteer from "rebrowser-puppeteer-core";
 import Xvfb from "./xvfb";
 
@@ -29,7 +28,7 @@ export default class BrowserHelper {
             ];
         } else {
             // Default flags: https://github.com/GoogleChrome/chrome-launcher/blob/main/src/flags.ts
-            const flags = Launcher.defaultFlags();
+            const flags = (await import("chrome-launcher")).Launcher.defaultFlags();
             // Add AutomationControlled to "disable-features" flag
             const indexDisableFeatures = flags.findIndex((flag) => flag.startsWith('--disable-features'));
             flags[indexDisableFeatures] = `${flags[indexDisableFeatures]},AutomationControlled`;
@@ -46,7 +45,7 @@ export default class BrowserHelper {
             ];
         }
 
-        const chrome = await launch({
+        const chrome = await (await import("chrome-launcher")).launch({
             ignoreDefaultFlags: true,
             chromeFlags,
             ...(params?.customConfig ?? {}),

@@ -1,7 +1,7 @@
-import { LaunchedChrome, Options } from "chrome-launcher/dist/chrome-launcher";
 import { GhostCursor } from "ghost-cursor"
 import { Browser, Page } from "rebrowser-puppeteer-core";
 import Xvfb from "./xvfb";
+import { LaunchedChrome, Options } from "chrome-launcher/dist/chrome-launcher";
 
 export type BrowserLaunchOptions = {
     args?: Array<string>,
