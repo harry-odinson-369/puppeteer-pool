@@ -1,4 +1,4 @@
-import { LaunchedChrome, Options } from "chrome-launcher";
+import { LaunchedChrome, Options } from "chrome-launcher/dist/chrome-launcher";
 import { GhostCursor } from "ghost-cursor"
 import { Browser, Page } from "rebrowser-puppeteer-core";
 import Xvfb from "./xvfb";

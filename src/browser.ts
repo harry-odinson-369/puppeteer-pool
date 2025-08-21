@@ -1,5 +1,5 @@
 import { BrowserConnectResult, BrowserLaunchOptions } from "./types";
-import { Launcher, launch } from "chrome-launcher";
+import { Launcher, launch } from "chrome-launcher/dist/chrome-launcher";
 import puppeteer from "rebrowser-puppeteer-core";
 import Xvfb from "./xvfb";
 
@@ -9,7 +9,6 @@ export default class BrowserHelper {
 
         if (process.platform === "linux" && (params?.disableXvfb ?? false) === false) {
             try {
-                const { default: Xvfb } = await import("./xvfb");
                 xvfbsession = new Xvfb({
                     silent: true,
                     xvfb_args: ["-screen", "0", "1920x1080x24", "-ac"],
