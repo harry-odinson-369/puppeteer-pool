@@ -4,6 +4,7 @@
   "description": "This is a puppeteer pool helper to handle incoming request.",
   "main": "./dist/puppeteer.js",
   "types": "./dist/puppeteer.d.ts",
+  "private": "false",
   "repository": {
     "url": "https://github.com/harry-odinson-369/puppeteer-pool"
   },

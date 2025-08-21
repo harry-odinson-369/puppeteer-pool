@@ -1,8 +1,10 @@
-import { BrowserConnectResult, BrowserLaunchOptions, PageWithCursor } from "./types";
+import { BrowserConnectResult, BrowserLaunchOptions, PageWithCursor, ProxyOptions } from "./types";
 import BrowserHelper from "./browser";
 import PageWrapper from "./wrapper";
-import { Page } from "rebrowser-puppeteer-core";
+import { Page, Browser } from "rebrowser-puppeteer-core";
 import CursorPage from "./page";
+
+export { PageWithCursor, Browser, Page, BrowserConnectResult, BrowserLaunchOptions, ProxyOptions }
 
 export default class PuppeteerPool {
     private constructor() { }
@@ -35,9 +37,9 @@ export default class PuppeteerPool {
                 page.on("close", async () => {
                     await newContext.close().catch(() => { });
                 });
-            } catch {}
+            } catch { }
         } else {
-            try { page = await this.connection.browser.newPage(); } catch {}
+            try { page = await this.connection.browser.newPage(); } catch { }
         }
         if (!page) return undefined;
         const pagewithcursor = await CursorPage.create({ ...this.connection, page, turnstile: props?.turnstile });
