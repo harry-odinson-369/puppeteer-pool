@@ -1,8 +1,9 @@
 {
-  "name": "@harryodinson/puppeteer-pool",
+  "name": "puppetool",
   "version": "1.0.0",
   "description": "This is a puppeteer pool helper to handle incoming request.",
   "main": "./dist/puppeteer.js",
+  "module": "./dist/puppeteer.mjs",
   "types": "./dist/puppeteer.d.ts",
   "homepage": "https://github.com/harry-odinson-369/puppeteer-pool",
   "repository": {
