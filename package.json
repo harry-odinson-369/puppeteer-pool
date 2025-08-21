@@ -1,10 +1,10 @@
 {
   "name": "puppetool",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This is a puppeteer pool helper to handle concurrent tab/page with limit.",
-  "main": "./dist/puppeteer.js",
-  "module": "./dist/puppeteer.mjs",
-  "types": "./dist/puppeteer.d.ts",
+  "main": "./dist/puppetool.js",
+  "module": "./dist/puppetool.mjs",
+  "types": "./dist/puppetool.d.ts",
   "homepage": "https://github.com/harry-odinson-369/puppetool",
   "repository": {
     "url": "https://github.com/harry-odinson-369/puppetool"
@@ -12,13 +12,16 @@
   "type": "module",
   "scripts": {
     "test": "npm run build && npm run test",
-    "start": "node ./dist/puppeteer.js",
+    "start": "node ./dist/puppetool.js",
     "build": "tsup"
   },
   "keywords": [
     "puppeteer",
     "tools",
-    "helper"
+    "helper",
+    "puppetool",
+    "browser",
+    "scrape"
   ],
   "author": "harry-odinson",
   "license": "ISC",

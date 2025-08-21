@@ -1,4 +1,4 @@
-# PuppeteerPool 😎
+# Puppetool 😎
 
 A lightweight **Puppeteer tab/page pool manager** that helps you control concurrent pages/tabs efficiently.
 It supports both **shared** and **isolated contexts** (fresh pages with no cookies or storage shared), making it ideal for web scraping, automation, or load-balanced browser tasks.
@@ -17,21 +17,20 @@ It supports both **shared** and **isolated contexts** (fresh pages with no cooki
 ## 📦 Installation
 
 ```bash
-npm install @harryodinson/puppeteer-pool
+npm install puppetool
 ```
 
 ## 🚀 Usage (TypeScript)
 
 ```typescript
-import PuppeteerPool from "puppeteer-pool";
-import { Page } from "rebrowser-puppeteer-core"; // or from "puppeteer"
+import Puppetool, { Page } from "puppetool";
 
 (async () => {
   // Configure maximum concurrent tabs/pages
-  PuppeteerPool.instance.setMaxConcurrentPages(10);
+  Puppetool.instance.setMaxConcurrentPages(10);
 
   // Request a new page. If { fresh: true }, it will create a new isolated browser context (no cookies, cache, or localStorage shared with others).
-  const page = await PuppeteerPool.instance.getPage({ fresh: true });
+  const page = await Puppetool.instance.getPage({ fresh: true });
 
   // Do your logic here as normal
   await page.goto("https://example.com");

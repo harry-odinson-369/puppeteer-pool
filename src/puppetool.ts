@@ -6,17 +6,13 @@ import CursorPage from "./page";
 
 export { PageWithCursor, Browser, Page, BrowserConnectResult, BrowserLaunchOptions, ProxyOptions }
 
-export default class PuppeteerPool {
+export default class Puppetool {
     private constructor() { }
-    private static _instance = new PuppeteerPool();
-    static get instance() {
-        return this._instance;
-    }
+    private static _instance = new Puppetool();
+    static get instance() { return this._instance; }
 
     setMaxConcurrentPages(max: number) {
-        if (max > 0) {
-            this.maxConcurrentPages = max;
-        }
+        if (max > 0) this.maxConcurrentPages = max;
     }
 
     maxConcurrentPages = 150;
@@ -26,9 +22,7 @@ export default class PuppeteerPool {
 
     async getPage(props?: { turnstile?: boolean, fresh?: boolean }): Promise<PageWithCursor | undefined> {
         if (!this.connection) this.connection = await new BrowserHelper().connect(this.options);
-        if (this.pages.length >= this.maxConcurrentPages) {
-            await this.waitForFreeSlot();
-        }
+        if (this.pages.length >= this.maxConcurrentPages) await this.waitForFreeSlot();
         let page: Page | undefined;
         if (props?.fresh === true) {
             try {
