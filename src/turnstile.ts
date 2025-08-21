@@ -9,7 +9,7 @@ export default class Turnstile {
                 const elements = await page.$$('[name="cf-turnstile-response"]');
                 if (elements.length <= 0) {
                     const coordinates = await page.evaluate(() => {
-                        let coordinates = [];
+                        let coordinates: any[] = [];
                         document.querySelectorAll('div').forEach(item => {
                             try {
                                 let itemCoordinates = item.getBoundingClientRect()
@@ -43,7 +43,7 @@ export default class Turnstile {
                 for (const element of elements) {
                     try {
                         const parentElement = await element.evaluateHandle(el => el.parentElement);
-                        const box = await parentElement.boundingBox();
+                        const box = await (parentElement as any).boundingBox();
                         let x = box.x + 30;
                         let y = box.y + box.height / 2;
                         await page.mouse.click(x, y);

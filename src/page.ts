@@ -1,5 +1,5 @@
 import { createCursor } from 'ghost-cursor';
-import * as kill from 'tree-kill';
+import treeKill from 'tree-kill';
 import { PageControllerOptions, PageWithCursor } from './types';
 import Turnstile from './turnstile';
 
@@ -15,7 +15,7 @@ export default class CursorPage {
             if (params.killProcess === true) {
                 if (params.xvfbsession) try { params.xvfbsession?.stop() } catch (err) { }
                 if (params.chrome) try { params.chrome.kill() } catch (err) { console.log(err); }
-                if (params.chrome.pid) try { kill(params.chrome.pid, 'SIGKILL', () => { }) } catch (err) { }
+                if (params.chrome.pid) try { treeKill(params.chrome.pid, 'SIGKILL', () => { }) } catch (err) { }
             }
         });
         async function turnstileSolver() {

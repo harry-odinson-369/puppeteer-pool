@@ -15,7 +15,7 @@ export default class BrowserHelper {
                     xvfb_args: ["-screen", "0", "1920x1080x24", "-ac"],
                 });
                 xvfbsession.start();
-            } catch (err) {
+            } catch (err: any) {
                 console.log(`You are running on a Linux platform but do not have xvfb installed. The browser can be captured. Please install it with the following command\n\nsudo apt-get install xvfb\n\n${err.message}`);
             }
         }
@@ -55,15 +55,15 @@ export default class BrowserHelper {
 
         const browser = await puppeteer.connect({
             browserURL: `http://127.0.0.1:${chrome.port}`,
-            ...(params.connectOption ?? {}),
+            ...(params?.connectOption ?? {}),
         });
 
         return {
             browser,
             chrome,
             killProcess: true,
-            proxy: params.proxy,
-            xvfbsession: xvfbsession,
+            proxy: params?.proxy,
+            xvfbsession: xvfbsession ?? undefined,
         };
     }
 }

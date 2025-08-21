@@ -4,7 +4,7 @@ import PageWrapper from "./wrapper";
 import { Page, Browser } from "rebrowser-puppeteer-core";
 import CursorPage from "./page";
 
-export { PageWithCursor, Browser, Page, BrowserConnectResult, BrowserLaunchOptions, ProxyOptions }
+export { type PageWithCursor, Browser, Page, type BrowserConnectResult, type BrowserLaunchOptions, type ProxyOptions }
 
 export default class Puppetool {
     private constructor() { }
@@ -17,7 +17,7 @@ export default class Puppetool {
 
     maxConcurrentPages = 150;
     options: BrowserLaunchOptions = { connectOption: { defaultViewport: null } };
-    connection: BrowserConnectResult;
+    connection: BrowserConnectResult | undefined;
     pages: PageWrapper[] = [];
 
     async getPage(props?: { turnstile?: boolean, fresh?: boolean }): Promise<PageWithCursor | undefined> {
@@ -39,8 +39,8 @@ export default class Puppetool {
         const pagewithcursor = await CursorPage.create({ ...this.connection, page, turnstile: props?.turnstile });
         const wrapped = new PageWrapper(pagewithcursor);
         pagewithcursor.on("close", () => {
-            const page = this.pages.find(e => e.__id === wrapped.__id);
-            if (page) page.page = null;
+            const __wrap = this.pages.find(e => e.__id === wrapped.__id);
+            if (__wrap) __wrap.page = undefined;
             this.pages = this.pages.filter(p => p.__id !== wrapped.__id);
         });
         this.pages.push(wrapped);
